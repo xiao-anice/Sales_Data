@@ -12,7 +12,7 @@ header = st.container()
 dataset = st.container()
 
 with header:
-    st.title("welcome to my data web")
+    st.title("Welcome to my data web")
     st.text("in this project, i will try some data visulization")
 
 with dataset:
