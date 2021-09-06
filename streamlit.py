@@ -17,7 +17,7 @@ with header:
 
 with dataset:
     st.title("this is dataset section")
-    df = pd.read_excel('./test.xlsx')
+    df = pd.read_excel('./TPE30.xlsx')
     st.dataframe(df)
 
 # 3. filter, group dataframe
