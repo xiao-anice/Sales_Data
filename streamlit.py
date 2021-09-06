@@ -55,12 +55,4 @@ scatter = px.scatter(df_grouped_1,
                      )
 scatter
 
-    #CPR = alt.Chart(df).mark_circle().encode(x = 'Search Volume', y = "Competing", size="CPR", color="CPR")
-    #st.altair_chart(CPR)
-    #st.write(df.head(1000))
-    #st.subheader("Search Volume")
-    #st.bar_chart(df['Search Volume'])
-    #st.subheader("Competing")
-    #st.bar_chart(df["Competing"])
-
 
