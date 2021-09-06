@@ -1,12 +1,15 @@
+# 1. import
 import streamlit as st
 import pandas as pd
+import numpy as np
+import altair as alt
 import plotly.express as px
 from PIL import Image
 
+
+# 2. load dataframe
 header = st.container()
 dataset = st.container()
-features = st.container()
-model_training = st.container()
 
 with header:
     st.title("welcome to my data web")
@@ -14,22 +17,50 @@ with header:
 
 with dataset:
     st.title("this is dataset section")
-    st.text("um....")
     df = pd.read_excel('./test.xlsx')
-    st.write(df.head(100))
-    st.subheader("Search Volume")
-    st.bar_chart(df['Search Volume'])
-    st.subheader("Competing")
-    st.bar_chart(df['Competing'])
+    st.dataframe(df)
+
+# 3. filter, group dataframe
+# filter by search volume
+min_sv = min(df['Search Volume'])
+max_sv = max(df['Search Volume'])
+sv_selection = (min_sv, max_sv)
+sv = df['Search Volume'].unique().tolist()
 
 
-with features:
-    st.title("this is feature section")
 
 
-with model_training:
-    st.title("this is model training session")
-    sel_col, disp_col = st.columns(2)
-    max_depth = sel_col.slider("what?",min_value=100, max_value=100000, value=100, step=10)
-    n_estimators = sel_col.selectbox("select?", options=[100, 200, 300, 'no limit'], index=0)
-    input_feature = sel_col.text_input
+
+# 4. plot data
+# 4.1 data selection
+sv_selection = st.slider('Search Volume',
+                         min_sv,
+                         max_sv,
+                         value=(min_sv,max_sv),
+                         step=10)
+mask_1 = df['Search Volume'].between(*sv_selection)
+number_of_results = df[mask_1].shape[0]
+st.markdown(f'Availabel Results: {number_of_results}')
+
+
+# 4.2 data dispaly
+df_grouped_1 = df[mask_1]
+df_grouped_1
+scatter = px.scatter(df_grouped_1,
+                     x='Search Volume',
+                     y='Competing',
+                     size='CPR',
+                     color='CPR',
+                     hover_name='Phrase',
+                     )
+scatter
+
+    #CPR = alt.Chart(df).mark_circle().encode(x = 'Search Volume', y = "Competing", size="CPR", color="CPR")
+    #st.altair_chart(CPR)
+    #st.write(df.head(1000))
+    #st.subheader("Search Volume")
+    #st.bar_chart(df['Search Volume'])
+    #st.subheader("Competing")
+    #st.bar_chart(df["Competing"])
+
+
