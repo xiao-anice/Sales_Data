@@ -12,6 +12,8 @@ st.markdown("""
 # Multi-Page App
 """)
 
+private_gsheets_url = "https://docs.google.com/spreadsheets/d/1aetVIVOXV634qoplPFPLOCIqUg4DEwbbsboSWcfk6nc/edit?usp=sharing"
+
 app = MultiPage()
 app.add_page('Home', home.app)
 app.add_page('TPE30 Keywords', TPE30Data.app)
