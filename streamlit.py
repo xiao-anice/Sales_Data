@@ -5,15 +5,17 @@ import numpy as np
 import altair as alt
 import plotly.express as px
 from PIL import Image
+from multiapp import MultiPage
 
+app = MultiPage
 
 # 2. load dataframe
 header = st.container()
 dataset = st.container()
 
 with header:
-    st.title("Welcome to my data web")
-    st.text("in this project, i will try some data visulization")
+    st.title("Data website")
+    st.text("This app will show all the data related to sales and keywords")
 
 with dataset:
     st.title("this is dataset section")
