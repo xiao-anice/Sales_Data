@@ -6,55 +6,18 @@ import altair as alt
 import plotly.express as px
 from PIL import Image
 from multiapp import MultiPage
+from apps import home, TPE30Data, TPE48Data, PVCData, KneeBraceData
 
-app = MultiPage
+st.markdown("""
+# Multi-Page App
+""")
 
-# 2. load dataframe
-header = st.container()
-dataset = st.container()
-
-with header:
-    st.title("Data website")
-    st.text("This app will show all the data related to sales and keywords")
-
-with dataset:
-    st.title("this is dataset section")
-    df = pd.read_excel('./TPE30.xlsx')
-    st.dataframe(df)
-
-# 3. filter, group dataframe
-# filter by search volume
-min_sv = min(df['Search Volume'])
-max_sv = max(df['Search Volume'])
-sv_selection = (min_sv, max_sv)
-sv = df['Search Volume'].unique().tolist()
-
-
-
-
-
-# 4. plot data
-# 4.1 data selection
-sv_selection = st.slider('Search Volume',
-                         min_sv,
-                         max_sv,
-                         value=(min_sv,max_sv),
-                         step=10)
-mask_1 = df['Search Volume'].between(*sv_selection)
-number_of_results = df[mask_1].shape[0]
-st.markdown(f'Availabel Results: {number_of_results}')
-
-
-# 4.2 data dispaly
-df_grouped_1 = df[mask_1]
-df_grouped_1
-scatter = px.scatter(df_grouped_1,
-                     x='Search Volume',
-                     y='Competing',
-                     size='CPR',
-                     color='CPR',
-                     hover_name='Phrase',
-                     )
-scatter
+app = MultiPage()
+app.add_page('Home', home.app)
+app.add_page('TPE30 Keywords', TPE30Data.app)
+app.add_page('TPE48 Keywords', TPE48Data.app)
+app.add_page('PVC Keywords', PVCData.app)
+app.add_page('Knee Brace Keywords', KneeBraceData.app)
+app.run()
 
 

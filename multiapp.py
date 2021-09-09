@@ -14,7 +14,7 @@ class MultiPage:
         page = st.sidebar.selectbox(
             'App Navigation',
             self.pages,
-            format_func = lambda page: page[title]
+            format_func = lambda page: page['title']
         )
 
         page['function']()
