@@ -3,3 +3,4 @@ pandas
 numpy
 plotly
 openpyxl
+gsheetsdb==0.1.13
