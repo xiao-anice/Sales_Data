@@ -11,7 +11,7 @@ def app():
 
     with dataset:
         st.title("Knee Brace Keywords Data")
-        df = pd.read_excel('./KneeBrace.xlsx')
+        df = pd.read_excel('./Data/KwsData/KneeBrace.xlsx')
         #st.dataframe(df)
 
     # filter by search volume

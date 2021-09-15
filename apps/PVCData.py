@@ -11,7 +11,7 @@ def app():
 
     with dataset:
         st.title("PVC Keywords Data")
-        df = pd.read_excel('./PVC.xlsx')
+        df = pd.read_excel('./Data/KwsData/PVC.xlsx')
         #st.dataframe(df.dtypes())
 
     # filter by search volume
